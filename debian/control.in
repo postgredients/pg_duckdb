@@ -1,0 +1,17 @@
+Source: pg-duckdb
+Section: database
+Priority: optional
+Maintainer: <mdb@yandex-team.ru>
+Build-Depends: debhelper (>= 10), postgresql-server-dev-all (>= 195~),
+ cmake, ninja-build, g++, pkg-config,
+ libcurl4-openssl-dev, libssl-dev, libstdc++-12-dev
+Standards-Version: 1.1-0
+Homepage: https://github.com/duckdb/pg_duckdb
+
+Package: postgresql-PGVERSION-pg-duckdb
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, postgresql-PGVERSION,
+ libcurl4, libstdc++6
+Description: DuckDB embedded analytics engine for PostgreSQL
+ pg_duckdb embeds DuckDB into PostgreSQL, enabling fast analytical queries
+ over local tables and remote object storage (S3, GCS, Azure).

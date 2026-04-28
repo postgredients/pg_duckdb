@@ -1,0 +1,33 @@
+Source: pg-duckdb
+Section: database
+Priority: optional
+Maintainer: <mdb@yandex-team.ru>
+Build-Depends: debhelper (>= 10), postgresql-server-dev-all (>= 195~),
+ cmake, ninja-build, g++, pkg-config,
+ libcurl4-openssl-dev, libssl-dev, libstdc++-12-dev
+Standards-Version: 1.1-0
+Homepage: https://github.com/duckdb/pg_duckdb
+
+Package: postgresql-15-pg-duckdb
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, postgresql-15,
+ libcurl4, libstdc++6
+Description: DuckDB embedded analytics engine for PostgreSQL
+
+Package: postgresql-16-pg-duckdb
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, postgresql-16,
+ libcurl4, libstdc++6
+Description: DuckDB embedded analytics engine for PostgreSQL
+
+Package: postgresql-17-pg-duckdb
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, postgresql-17,
+ libcurl4, libstdc++6
+Description: DuckDB embedded analytics engine for PostgreSQL
+
+Package: postgresql-18-pg-duckdb
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, postgresql-18,
+ libcurl4, libstdc++6
+Description: DuckDB embedded analytics engine for PostgreSQL

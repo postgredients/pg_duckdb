@@ -170,7 +170,7 @@ DECLARE_PG_FUNCTION(pgduckdb_create_simple_secret) {
 	 * creating the SERVER so errors are reported before any catalog changes. */
 	if (PG_NARGS() > 7 && !PG_ARGISNULL(7)) {
 		auto endpoint_arg = pgduckdb::pg::GetArgString(fcinfo, 7);
-		ValidateEndpointSuffix(endpoint_arg.empty() ? nullptr : endpoint_arg.c_str());
+			pgduckdb::pg::ValidateEndpointSuffix(endpoint_arg.empty() ? nullptr : endpoint_arg.c_str());
 	}
 
 	auto options = pgduckdb::pg::ReadOptions(
