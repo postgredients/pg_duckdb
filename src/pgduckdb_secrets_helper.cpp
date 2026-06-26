@@ -249,16 +249,25 @@ ValidateEndpointSuffixValue(const char *endpoint) {
 
 	for (token = strtok_r(suffixes_copy, ",", &saveptr); token != nullptr;
 	     token = strtok_r(nullptr, ",", &saveptr)) {
-		/* Trim leading whitespace. */
+		/* Trim surrounding whitespace. */
 		while (*token == ' ')
 			token++;
 
 		size_t sfx_len = strlen(token);
+		while (sfx_len > 0 && token[sfx_len - 1] == ' ')
+			token[--sfx_len] = '\0';
+
 		if (sfx_len == 0)
 			continue;
 
+		/*
+		 * Match on a dot boundary so that an allowed suffix like "yandex.net"
+		 * accepts "yandex.net" itself and "s3.yandex.net", but not an
+		 * unrelated host such as "evilyandex.net".
+		 */
 		if (ep_len >= sfx_len &&
-		    strcmp(endpoint + ep_len - sfx_len, token) == 0)
+		    strcmp(endpoint + ep_len - sfx_len, token) == 0 &&
+		    (ep_len == sfx_len || endpoint[ep_len - sfx_len - 1] == '.'))
 			return; /* matched */
 	}
 
